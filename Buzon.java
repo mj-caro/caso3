@@ -1,3 +1,6 @@
+import java.util.Queue;
+import java.util.LinkedList;
+
 public class Buzon {
     private Queue<Evento> colaEventos;
     private int capacidad;
