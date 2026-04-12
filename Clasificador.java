@@ -1,3 +1,6 @@
+/*Leen los eventos del buzón de clasificación y dependiendo del tipo de
+evento lo envían al servidor de consolidación y despliegue correspondiente.
+o Un clasificador termina cuando recibe un evento de fin. */
 public class Clasificador extends Thread {
     private static int activos;
     private static Object lock = new Object();

@@ -1,3 +1,9 @@
+/*Lee eventos del buzón de alertas.
+o Inspecciona los eventos en profundidad para determinar si son
+efectivamente maliciosos. Si confirma que un evento es malicioso lo
+descarta. Los eventos que pasan la inspección se llevan al buzón de
+clasificación.
+o El administrador termina cuando recibe un evento de fin. */
 public class Administrador extends Thread { 
     private Buzon alertas;
     private Buzon clasificacion;

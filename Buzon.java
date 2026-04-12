@@ -1,3 +1,8 @@
+/*Es el encargado de revisar los eventos del buzón de entrada.
+o Si el evento es sospechoso, lo envía al buzón de alertas.
+o Si es válido, lo envía al buzón para clasificación.
+o El bróker termina cuando ha procesado todos los eventos que el sistema
+debe generar.  */
 import java.util.Queue;
 import java.util.LinkedList;
 

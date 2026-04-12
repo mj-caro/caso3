@@ -13,7 +13,7 @@ public class Broker extends Thread {
 
                 int aleatorio = (int) (Math.random() * 200);
 
-                if (aleatorio % 8 == 0) { //si es multiplo de 8
+                if (aleatorio % 8 == 0) { //si es multiplo de 8 -> anómalo
                     alertas.depositar(evento);
 
                 } else {
