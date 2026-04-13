@@ -6,11 +6,11 @@ debe generar.  */
 import java.util.Queue;
 import java.util.LinkedList;
 
-public class Buzon {
+public class Buzon_limitado {
     private Queue<Evento> colaEventos;
     private int capacidad;
     
-    public Buzon(int capacidad) {
+    public Buzon_limitado(int capacidad) {
         this.capacidad = capacidad;
         this.colaEventos = new LinkedList<>();
     }

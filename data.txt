@@ -1,6 +1,6 @@
 ni=2
-ne=3
-nc=43
-ns=4
-tam1=23
-tam2=10000
+ne=2
+nc=2
+ns=2
+tam1=2
+tam2=2

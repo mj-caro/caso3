@@ -6,10 +6,10 @@ o Cada sensor termina cuando ha generado todos los eventos asignados.  */
 public class Sensor extends Thread{
     private int id;
     private int numEventos;
-    private Buzon buzonEntrada;
+    private Buzon_ilimitado buzonEntrada;
     private int ns;
 
-    public Sensor(int id, int numEventos, Buzon buzonEntrada , int ns) {
+    public Sensor(int id, int numEventos, Buzon_ilimitado buzonEntrada , int ns) {
         this.id = id;
         // numeventos = (valor base en el archivo)*(num identificaión del sensor)
         this.numEventos = numEventos;
@@ -33,6 +33,7 @@ public class Sensor extends Thread{
 
             } catch (InterruptedException e) {}
         }
+        System.out.println("Sensor" + id + "terminando");
         }
     }
 

@@ -24,11 +24,12 @@ public class Main {
     public static void readArchivo(){
         // 
         try(BufferedReader reader = new BufferedReader(new FileReader("data.txt"))){
-            // ni, assuming it's written as ni = number
+            // Number of sensors
             String ni_line = reader.readLine();
             String ni_value = ni_line.split("=")[1];
             ni = Integer.parseInt(ni_value);
 
+            // Numero base de eventos 
             String ne_line = reader.readLine();
             String ne_value = ne_line.split("=")[1];
             ne = Integer.parseInt(ne_value);
@@ -57,7 +58,7 @@ public class Main {
             System.out.println("Error");
         }
 
-        /*test:
+        /* Test: see if the file can be read correctly  
         System.out.println("ni: " + ni);
         System.out.println("ne: " + ne); 
         System.out.println("nc: " + nc);
@@ -65,12 +66,45 @@ public class Main {
         System.out.println("tam1: " + tam1);
         System.out.println("tam2: " + tam2);
         */
+        
     }
 
 
     public static void main(String[] args){
         readArchivo();
+
+        // create objects
+        Administrador add = new Administrador();
+
+        
+        Buzon_ilimitado entrada_buz = new Buzon_ilimitado("entrada");
+        Buzon_ilimitado alertas_buz = new Buzon_ilimitado("alertas");
+        Buzon_limitado clas_buz = new Buzon_limitado(tam1);
+
+        // Create buzon and servidor arrays 
+        Buzon_limitado[] consol_buz = new Buzon_limitado[ns];
+        Servidor[] serv = new Servidor[ns];
+        new Broker(ni,ne).start();
+
+        // Fill the arrays  
+        for(int i = 0; i<ns; i++){
+            consol_buz[i] = new Buzon_limitado(tam2);
+            serv[i] = new Servidor(consol_buz[i]);
+            serv[i].start();
+        }
+
+        // Create ns threads for classifiers 
+        for(int k = 0; k<nc; k++){
+            new Clasificador(clas_buz,consol_buz, ns, k).start();
+        }
+        
+
+        // Create ni sensor threads (numero base de eventos????)
+        for (int i=0;i<ni; i++){
+            new Sensor(i,ne,entrada_buz,ns).start(); // int id, int numEventos, Buzon buzonEntrada , int ns
+        }
+
     }
-    // create Administrator 
+     
 
 }
