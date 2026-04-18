@@ -50,7 +50,7 @@ public class Broker extends Thread {
         // para enviarle el FIN al admin usamos buzon de alertas
         try {
             alertas.depositar(Evento.crearEventoFin());
-            System.out.println("Broker terminando, total eventos:" + totalEventos + "procesados:" + procesados + "enviando evento de terminacion a Administrador");
+            System.out.println("Broker terminando, total eventos: " + totalEventos + " procesados: " + procesados + " enviando evento de terminacion a Administrador");
 
         } catch (InterruptedException e) {}
     }

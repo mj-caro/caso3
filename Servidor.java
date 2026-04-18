@@ -11,12 +11,19 @@ public class Servidor extends Thread {
     public void run() {
         try {
             while (true) {
+
+                System.out.println("Servidor esperando evento");
+
                 Evento evento = consolidacion_buz.retirar();
                 
                 //Termina su ejecución si el evento es de fin
                 if (evento.esFin) {
+                    System.out.println("Servidor recibe evento FIN y termina");
                     break;
                 }
+
+                System.out.println("Servidor procesando evento");
+                
                 //Simulamos el tiempo de lectura y procesamiento
                 Thread.sleep((int)(Math.random() * 900) + 100);
             }
