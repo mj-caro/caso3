@@ -32,6 +32,9 @@ public class Buzon_alertas{
         else return false; 
     }
     public synchronized Evento retirar() throws InterruptedException {
+        while (colaEventos.isEmpty()) {
+            wait();
+        }
         Evento evento = colaEventos.poll();
         System.out.println("Deposicion, size of Buzon" + nombre + ": " + colaEventos.size());
         notifyAll();

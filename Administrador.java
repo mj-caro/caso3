@@ -9,6 +9,12 @@ public class Administrador extends Thread {
     private Buzon_clasificacion clasificacion;
     private int numeroClasificadores;
 
+    public Administrador(Buzon_alertas alertas, Buzon_clasificacion clasificacion, int numeroClasificadores){
+        this.alertas = alertas;
+        this.clasificacion = clasificacion;
+        this.numeroClasificadores = numeroClasificadores;
+    }
+    
     public void run() {
        try {
             while (true){

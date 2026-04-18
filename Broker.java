@@ -5,8 +5,12 @@ public class Broker extends Thread {
     private int totalEventos;
 
     // tiene que conocer todo los eventos procesados 
-    public Broker(int num_sensores, int num_eventos){
-       totalEventos = num_eventos*num_sensores; 
+    public Broker(Buzon_entrada entrada, Buzon_alertas alertas, Buzon_clasificacion clasificacion, int num_sensores, int num_eventos){
+        this.entrada = entrada;
+        this.alertas = alertas;
+        this.clasificacion = clasificacion;
+    
+        totalEventos = num_eventos * num_sensores;
     }
 
     public void run(){

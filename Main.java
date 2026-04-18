@@ -73,24 +73,25 @@ public class Main {
     public static void main(String[] args){
         readArchivo();
 
-        // create objects
-        Administrador add = new Administrador();
-
-        
+        // crea los buzones
         Buzon_entrada entrada_buz = new Buzon_entrada("entrada");
         Buzon_alertas alertas_buz = new Buzon_alertas("alertas");
         Buzon_clasificacion clasificacion_buz = new Buzon_clasificacion(tam1);
         Buzon_consolidacion consolidacion_buz[] = new Buzon_consolidacion[ns];
 
-        // Create buzon and servidor arrays 
-        Buzon_limitado[] consol_buz = new Buzon_limitado[ns];
+         // create objects
+         Administrador add = new Administrador(alertas_buz, clasificacion_buz, nc);
+         add.start();
+
+        // Create servidor arrays 
         Servidor[] serv = new Servidor[ns];
-        new Broker(ni,ne).start();
+        Broker broker = new Broker(entrada_buz, alertas_buz, clasificacion_buz, ni, ne);
+        broker.start();
 
         // Fill the arrays for consolidacion  
         for(int i = 0; i<ns; i++){
             consolidacion_buz[i] = new Buzon_consolidacion(tam2);
-            serv[i] = new Servidor(consol_buz[i]);
+            serv[i] = new Servidor(consolidacion_buz[i]);
             serv[i].start();
         }
 
@@ -102,7 +103,7 @@ public class Main {
 
         // Create ni sensor threads (numero base de eventos????)
         for (int i=0;i<ni; i++){
-            new Sensor(i,ne,entrada_buz,ns).start(); // int id, int numEventos, Buzon buzonEntrada , int ns
+            new Sensor(i,ne * i,entrada_buz,ns).start(); // int id, int numEventos, Buzon buzonEntrada , int ns
         }
 
     }

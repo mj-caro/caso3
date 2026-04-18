@@ -2,9 +2,9 @@
 o Consolida y despliega los mensajes para los clientes.
 o Un servidor termina cuando recibe un mensaje de fin.  */
 public class Servidor extends Thread {
-    private Buzon_limitado consolidacion_buz;
+    private Buzon_consolidacion consolidacion_buz;
 
-    public Servidor(Buzon_limitado buzon) {
+    public Servidor(Buzon_consolidacion buzon) {
         this.consolidacion_buz = buzon;
     }
 
