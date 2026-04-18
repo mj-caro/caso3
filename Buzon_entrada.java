@@ -6,13 +6,13 @@ debe generar.  */
 import java.util.Queue;
 import java.util.LinkedList;
 
-public class Buzon_ilimitado {
+public class Buzon_entrada {
     // has to be made public so administrador can access it 
     public  Queue<Evento> colaEventos;
     private String nombre; 
     private boolean debe_terminar = false;
     
-    public Buzon_ilimitado(String nom) {
+    public Buzon_entrada(String nom) {
         // Linked list to implement the queue interface 
         this.colaEventos = new LinkedList<>();
         nombre = nom;
@@ -27,16 +27,13 @@ public class Buzon_ilimitado {
 
     public synchronized Evento retirar() throws InterruptedException {
         // wait for the producers to fill buzon if it's empty 
-        // BUT: should stop if the flag is done gets changed!!!! 
         while (colaEventos.isEmpty()) {
+            // espera pasiva 
             wait();
         }
-
         // returns and deletes element at the front of the container
-        // returns null if empty -> have to check that!! 
         Evento evento = colaEventos.poll();
         System.out.println("Deposicion, size of Buzon" + nombre + ": " + colaEventos.size());
-        notifyAll();
         return evento;
     }
 }

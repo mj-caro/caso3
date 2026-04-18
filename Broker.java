@@ -1,7 +1,7 @@
 public class Broker extends Thread {
-    private Buzon_ilimitado entrada;
-    private Buzon_ilimitado alertas;
-    private Buzon_limitado clasificados;
+    private Buzon_entrada entrada;
+    private Buzon_alertas alertas;
+    private Buzon_clasificacion clasificacion;
     private int totalEventos;
 
     // tiene que conocer todo los eventos procesados 
@@ -12,8 +12,13 @@ public class Broker extends Thread {
     public void run(){
         int procesados = 0;
         System.out.println("omg");
+
+        // retirar (Espera pasiva)
+
         while (procesados < totalEventos) {
+
             try {
+
                 Evento evento = entrada.retirar();
 
                 int aleatorio = (int) (Math.random() * 200);
@@ -22,7 +27,11 @@ public class Broker extends Thread {
                     alertas.depositar(evento);
 
                 } else {
-                    clasificados.depositar(evento);
+                    // Esperar semiactivamente hasta que hay espacio en el buzon
+                    while (clasificacion.is_Full()){
+                        Thread.yield();
+                    }
+                    clasificacion.depositar(evento);
                 }
                 procesados++;
                 System.out.println("processados Broker:" + procesados);

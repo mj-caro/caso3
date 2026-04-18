@@ -5,12 +5,12 @@ public class Clasificador extends Thread {
     private static int activos;
     private static Object lock = new Object();
 
-    private Buzon_limitado clasificacion_buz;
-    private Buzon_limitado[] consolidacion_buz;
+    private Buzon_clasificacion clasificacion_buz;
+    private Buzon_consolidacion[] consolidacion_buz;
     private int ns;
     private int id;
 
-    public Clasificador(Buzon_limitado clasificacion_buz, Buzon_limitado[] consolidacion_buz, int ns, int id) {
+    public Clasificador(Buzon_clasificacion clasificacion_buz, Buzon_consolidacion[] consolidacion_buz, int ns, int id) {
         this.clasificacion_buz = clasificacion_buz;
         this.consolidacion_buz = consolidacion_buz;
         this.ns = ns;

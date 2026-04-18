@@ -6,10 +6,10 @@ o Cada sensor termina cuando ha generado todos los eventos asignados.  */
 public class Sensor extends Thread{
     private int id;
     private int numEventos;
-    private Buzon_ilimitado buzonEntrada;
+    private Buzon_entrada buzonEntrada;
     private int ns;
 
-    public Sensor(int id, int numEventos, Buzon_ilimitado buzonEntrada , int ns) {
+    public Sensor(int id, int numEventos, Buzon_entrada buzonEntrada , int ns) {
         this.id = id;
         // numeventos = (valor base en el archivo)*(num identificaión del sensor)
         this.numEventos = numEventos;
@@ -17,6 +17,7 @@ public class Sensor extends Thread{
         this.ns = ns;
     }
 
+    // dispositando en buzon de entrada usando espera semiactiva
     public void run() {
         /*Cada evento debe incluir, adicionalmente, un número seudoaleatorio entre 1 y ns,
         donde ns es el número de servidores de consolidación y despliegue. Este valor

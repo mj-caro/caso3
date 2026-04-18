@@ -77,25 +77,26 @@ public class Main {
         Administrador add = new Administrador();
 
         
-        Buzon_ilimitado entrada_buz = new Buzon_ilimitado("entrada");
-        Buzon_ilimitado alertas_buz = new Buzon_ilimitado("alertas");
-        Buzon_limitado clas_buz = new Buzon_limitado(tam1);
+        Buzon_entrada entrada_buz = new Buzon_entrada("entrada");
+        Buzon_alertas alertas_buz = new Buzon_alertas("alertas");
+        Buzon_clasificacion clasificacion_buz = new Buzon_clasificacion(tam1);
+        Buzon_consolidacion consolidacion_buz[] = new Buzon_consolidacion[ns];
 
         // Create buzon and servidor arrays 
         Buzon_limitado[] consol_buz = new Buzon_limitado[ns];
         Servidor[] serv = new Servidor[ns];
         new Broker(ni,ne).start();
 
-        // Fill the arrays  
+        // Fill the arrays for consolidacion  
         for(int i = 0; i<ns; i++){
-            consol_buz[i] = new Buzon_limitado(tam2);
+            consolidacion_buz[i] = new Buzon_consolidacion(tam2);
             serv[i] = new Servidor(consol_buz[i]);
             serv[i].start();
         }
 
         // Create ns threads for classifiers 
         for(int k = 0; k<nc; k++){
-            new Clasificador(clas_buz,consol_buz, ns, k).start();
+            new Clasificador(clasificacion_buz,consolidacion_buz, ns, k).start();
         }
         
 
