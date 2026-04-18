@@ -58,14 +58,14 @@ public class Main {
             System.out.println("Error");
         }
 
-        /* Test: see if the file can be read correctly  
+        
         System.out.println("ni: " + ni);
         System.out.println("ne: " + ne); 
         System.out.println("nc: " + nc);
         System.out.println("ns: " + ns);
         System.out.println("tam1: " + tam1);
         System.out.println("tam2: " + tam2);
-        */
+        
         
     }
 
@@ -102,7 +102,7 @@ public class Main {
         
 
         // Create ni sensor threads (numero base de eventos????)
-        for (int i=0;i<ni; i++){
+        for (int i= 1;i <= ni; i++){
             new Sensor(i,ne * i,entrada_buz,ns).start(); // int id, int numEventos, Buzon buzonEntrada , int ns
         }
 

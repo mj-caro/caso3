@@ -10,12 +10,15 @@ public class Broker extends Thread {
         this.alertas = alertas;
         this.clasificacion = clasificacion;
     
-        totalEventos = num_eventos * num_sensores;
+        int total = 0;
+        for (int i = 1; i <= num_sensores; i++) {
+        total += num_eventos * i;
+        }
+        this.totalEventos = total;
     }
 
     public void run(){
         int procesados = 0;
-        System.out.println("omg");
 
         // retirar (Espera pasiva)
 
