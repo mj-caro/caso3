@@ -21,6 +21,7 @@ public class Buzon_alertas{
 
     public synchronized void depositar(Evento evento) throws InterruptedException {
         colaEventos.add(evento);
+        notifyAll();
         System.out.println("Deposicion, size of Buzon" + nombre + ": " + colaEventos.size());
     }
 
